@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "hasGeminiKey": { "type": "boolean" },
+        "preferredStyle": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "TranslationJob": {
+      "title": "TranslationJob",
+      "description": "Book or PDF translation job metadata and status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "originalFileName": { "type": "string" },
+        "originalFileUrl": { "type": "string" },
+        "fileSizeBytes": { "type": "number" },
+        "totalPages": { "type": "number" },
+        "completedPages": { "type": "number" },
+        "currentPage": { "type": "number" },
+        "progress": { "type": "number" },
+        "genre": { "type": "string" },
+        "status": { "type": "string" },
+        "geminiModel": { "type": "string" },
+        "lastCheckpointPage": { "type": "number" },
+        "errorInfo": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "originalFileName", "totalPages", "status"]
+    },
+    "TranslationPage": {
+      "title": "TranslationPage",
+      "description": "Extracted and translated content for a specific page",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jobId": { "type": "string" },
+        "pageNumber": { "type": "number" },
+        "originalText": { "type": "string" },
+        "translatedSinhala": { "type": "string" },
+        "status": { "type": "string" },
+        "tokensUsed": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "jobId", "pageNumber", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents"
+    },
+    "/translations/{translationId}": {
+      "schema": "TranslationJob",
+      "description": "Translation job documents owned by users"
+    },
+    "/translations/{translationId}/pages/{pageId}": {
+      "schema": "TranslationPage",
+      "description": "Individual page translations under a translation job"
+    }
+  }
+}

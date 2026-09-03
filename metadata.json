@@ -1,0 +1,6 @@
+{
+  "name": "SinhalaBook Translator",
+  "description": "Production-ready PDF and book translator into natural, fluent Sinhala with persistent progress, resume capabilities, and PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
